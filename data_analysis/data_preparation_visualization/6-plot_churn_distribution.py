@@ -25,6 +25,8 @@ def plot_churn_distribution(df):
         color=["skyblue", "salmon"]
         )
 
+    plt.title("Churn Distribution")
+    plt.ylabel("Count")
     plt.show()
 
     return None
