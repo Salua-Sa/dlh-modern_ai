@@ -13,19 +13,24 @@ usingn a scatter plot.
 
     Args:
        df: The pandas DataFrame to analyze
-        
-    Returns: 
+
+    Returns:
        None
     """
+    # find missing values positions
     plt.figure(figsize=(12, 8))
-    missing_rows, missing_cols = np.where(df.isna()) # find missing values positions
+    missing_rows, missing_cols = np.where(df.isna())
 
-    plt.scatter(missing_rows, missing_cols, marker="|") # plot missing values 
+    # plot missing values
+    plt.scatter(missing_rows, missing_cols, marker="|")
 
+    # map y-axis numbers to column names
     plt.yticks(
-        ticks=range(len(df.columns)),
-                    labels=df.columns
-        ) # map y-axis numbers to column names
+        ticks=np.arange(
+            len(df.columns)), labels=df.columns
+        )
+
+    plt.title("Missingness Plot")
 
     plt.tight_layout()
     plt.show()
