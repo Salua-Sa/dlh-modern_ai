@@ -2,8 +2,6 @@
 """
 This module compares continuous numeric feature distributions by churn.
 """
-from turtle import title
-
 import matplotlib.pyplot as plt
 
 
