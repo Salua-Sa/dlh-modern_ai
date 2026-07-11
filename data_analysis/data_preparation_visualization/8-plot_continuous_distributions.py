@@ -30,6 +30,7 @@ def plot_continuous_distributions(df, columns_to_plot=None):
 
     if n_cols == 1:
         axes = axes.reshape(1, -1)
+
     for i, column in enumerate(columns_to_plot):
         data = df[column].dropna()
         axes[i][0].hist(
@@ -44,8 +45,7 @@ def plot_continuous_distributions(df, columns_to_plot=None):
         axes[i][0].plot(
             x_values,
             kde(x_values),
-            color="red",
-            linestyle="--")
+            color="red")
         axes[i][0].set_title(f"{column} Histogram + KDE")
         axes[i][1].boxplot(data, vert=False)
         axes[i][1].set_title(f"{column} Boxplot")
