@@ -31,5 +31,5 @@ for categorical columns against Churn
             dof = test_result[2]
             expected = test_result[3]
 
-            dic_result[column] = float(p_value)
+            dic_result[column] = p_value
     return dic_result
