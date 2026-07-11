@@ -1,0 +1,56 @@
+#!/usr/bin/env python3
+"""
+This module visualizes the distributions of continuous numerical features.
+"""
+from matplotlib import axes
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy import stats
+
+
+def plot_continuous_distributions(df, columns_to_plot=None):
+    """
+    Plots histograms, KDE lines, and boxplots for numeric columns.
+
+    Args:
+        df: The pandas DataFrame to analyze.
+        columns_to_plot: Optional lists of numeric colummns to plot
+
+    Returns:
+        None
+    """
+    if columns_to_plot is None:
+        columns_to_plot = []
+        for column in df.columns:
+            if df[column].dtype != "object":
+                columns_to_plot.append(column)
+
+    n_cols = len(columns_to_plot)
+    fig, axes = plt.subplots(n_cols, 2, figsize=(10, 3*n_cols))
+
+    if n_cols == 1:
+        axes = axes.reshape(1, -1)
+    for i, column in enumerate(columns_to_plot):
+        data = df[column].dropna()
+        axes[i][0].hist(
+            data,
+            bins=30,
+            density=True,
+            alpha=0.7,
+            edgecolor='black'
+            )
+        kde = stats.gaussian_kde(data)
+        x_values = np.linspace(data.min(), data.max(), 100)
+        axes[i][0].plot(
+            x_values,
+            kde(x_values),
+            color="red",
+            linestyle="--")
+        axes[i][0].set_title(f"{column} Histogram + KDE")
+        axes[i][1].boxplot(data, vert=False)
+        axes[i][1].set_title(f"{column} Boxplot")
+    plt.tight_layout()
+    plt.savefig("Task_8.png")
+    plt.show()
+
+    return None
