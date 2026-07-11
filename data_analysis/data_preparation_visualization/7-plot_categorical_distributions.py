@@ -26,18 +26,17 @@ def plot_categorical_distributions(df, columns_to_plot=None):
         columns_to_plot = columns_to_plot
 
     n_cols, n_rows = 3, (len(columns_to_plot) + 2) // 3
-    fig, axes = plt.subplots(n_rows, n_cols, figsize=(
-        15, 5*n_rows), squeeze=False)
+    fig, axes = plt.subplots(n_rows, n_cols, figsize=(15, 5*n_rows))
 
+    if n_rows == 1:
+        axes = [axes]
     for i, column in enumerate(columns_to_plot):
         row = i // n_cols
         col = i % n_cols
 
-        df[column].value_counts().plot(
-            kind="bar",
-            ax=axes[row][col],
-            width=0.8
-            )
+        counts = df[column].value_counts()
+
+        axes[row][col].bar(counts.index, counts.values)
         axes[row][col].set_title(column)
         axes[row][col].tick_params(axis="x", rotation=45)
 
