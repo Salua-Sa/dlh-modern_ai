@@ -2,7 +2,6 @@
 """
 This module visualizes the distributions of continuous numerical features.
 """
-from matplotlib import axes
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy import stats
