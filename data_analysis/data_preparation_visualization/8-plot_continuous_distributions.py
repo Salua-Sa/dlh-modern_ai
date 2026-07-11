@@ -2,6 +2,8 @@
 """
 This module visualizes the distributions of continuous numerical features.
 """
+from xml.etree.ElementInclude import include
+
 from matplotlib import axes
 import matplotlib.pyplot as plt
 import numpy as np
@@ -20,10 +22,7 @@ def plot_continuous_distributions(df, columns_to_plot=None):
         None
     """
     if columns_to_plot is None:
-        columns_to_plot = []
-        for column in df.columns:
-            if df[column].dtype != "object":
-                columns_to_plot.append(column)
+        columns_to_plot = df.select_dtypes(include="number").columns
 
     n_cols = len(columns_to_plot)
     fig, axes = plt.subplots(n_cols, 2, figsize=(10, 3*n_cols))
@@ -41,12 +40,23 @@ def plot_continuous_distributions(df, columns_to_plot=None):
             edgecolor='black'
             )
         kde = stats.gaussian_kde(data)
-        x_values = np.linspace(data.min(), data.max(), 100)
+        x_values = np.linspace(data.min(), data.max(), 1000)
         axes[i][0].plot(
             x_values,
             kde(x_values),
-            color="red")
+            color="red",
+            linestyle="--")
         axes[i][0].set_title(f"{column} Histogram + KDE")
+
+        if column == "tenure":
+            axes[i][0].set_ylim(0, 0.07)
+            axes[i][0].set_yticks([0, 0.01, 0.02, 0.03, 0.04, 0.05, 0.06])
+        elif column == "MonthlyCharges":
+            axes[i][0].set_ylim(0, 0.055)
+            axes[i][0].set_yticks([0, 0.01, 0.02, 0.03, 0.04, 0.05])
+        elif column == "TotalCharges":
+            axes[i][0].set_ylim(0, 0.0008)
+            axes[i][0].set_yticks([0.0000, 0.0002, 0.0004, 0.0006])
         axes[i][1].boxplot(data, vert=False)
         axes[i][1].set_title(f"{column} Boxplot")
     plt.tight_layout()
