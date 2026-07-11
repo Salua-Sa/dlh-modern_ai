@@ -20,22 +20,24 @@ def plot_categorical_distributions(df, columns_to_plot=None):
     if columns_to_plot is None:
         columns_to_plot = []
         for column in df.columns:
-            if (df[column].dtype == "object"
-                and column != "Churn"):
+            if (df[column].dtype == "object" and column != "Churn"):
                 columns_to_plot.append(column)
     else:
         columns_to_plot = columns_to_plot
 
     n_cols, n_rows = 3, (len(columns_to_plot) + 2) // 3
-    fig, axes = plt.subplots(n_rows, n_cols, figsize=(15, 5*n_rows))
+    fig, axes = plt.subplots(n_rows, n_cols, figsize=(
+        15, 5*n_rows), squeeze=False)
 
     for i, column in enumerate(columns_to_plot):
         row = i // n_cols
         col = i % n_cols
 
-        counts = df[column].value_counts()
-
-        axes[row][col].bar(counts.index, counts.values)
+        df[column].value_counts().plot(
+            kind="bar",
+            ax=axes[row][col],
+            width=0.8
+            )
         axes[row][col].set_title(column)
         axes[row][col].tick_params(axis="x", rotation=45)
 
