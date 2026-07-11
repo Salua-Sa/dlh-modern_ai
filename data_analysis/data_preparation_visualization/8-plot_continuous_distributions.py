@@ -27,9 +27,6 @@ def plot_continuous_distributions(df, columns_to_plot=None):
     n_cols = len(columns_to_plot)
     fig, axes = plt.subplots(n_cols, 2, figsize=(10, 3*n_cols))
 
-    if n_cols == 1:
-        axes = axes.reshape(1, -1)
-
     for i, column in enumerate(columns_to_plot):
         data = df[column].dropna()
         axes[i][0].hist(
@@ -48,13 +45,7 @@ def plot_continuous_distributions(df, columns_to_plot=None):
             linestyle="--")
         axes[i][0].set_title(f"{column} Histogram + KDE")
 
-        if column == "tenure":
-            axes[i][0].set_ylim(0, 0.07)
-            axes[i][0].set_yticks([0, 0.01, 0.02, 0.03, 0.04, 0.05, 0.06])
-        elif column == "MonthlyCharges":
-            axes[i][0].set_ylim(0, 0.055)
-            axes[i][0].set_yticks([0, 0.01, 0.02, 0.03, 0.04, 0.05])
-        elif column == "TotalCharges":
+        if column == "TotalCharges":
             axes[i][0].set_ylim(0, 0.0008)
             axes[i][0].set_yticks([0.0000, 0.0002, 0.0004, 0.0006])
         axes[i][1].boxplot(data, vert=False)
