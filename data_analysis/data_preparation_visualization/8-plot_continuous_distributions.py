@@ -2,8 +2,6 @@
 """
 This module visualizes the distributions of continuous numerical features.
 """
-from xml.etree.ElementInclude import include
-
 from matplotlib import axes
 import matplotlib.pyplot as plt
 import numpy as np
