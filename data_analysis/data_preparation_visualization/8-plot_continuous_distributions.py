@@ -29,7 +29,7 @@ def plot_continuous_distributions(df, columns_to_plot=None):
 
     for i, column in enumerate(columns_to_plot):
         data = df[column].dropna()
-        axes[i][0].hist(
+        axes[i, 0].hist(
             data,
             bins=30,
             density=True,
@@ -38,14 +38,17 @@ def plot_continuous_distributions(df, columns_to_plot=None):
             )
         kde = stats.gaussian_kde(data)
         x_values = np.linspace(data.min(), data.max(), 100)
-        axes[i][0].plot(
+        axes[i, 0].plot(
             x_values,
             kde(x_values),
             "r--"
             )
-        axes[i][0].set_title(f"{column} Histogram + KDE")
-        axes[i][1].boxplot(data, vert=False)
-        axes[i][1].set_title(f"{column} Boxplot")
+        if column == "TotalCharges":
+            axes[i][0].set_ylim(0, 0.0008)
+            axes[i][0].set_yticks([0.0000, 0.0002, 0.0004, 0.0006])
+        axes[i, 0].set_title(f"{column} Histogram + KDE")
+        axes[i, 1].boxplot(data, vert=False)
+        axes[i, 1].set_title(f"{column} Boxplot")
     plt.tight_layout()
     plt.savefig("Task_8.png")
     plt.show()
