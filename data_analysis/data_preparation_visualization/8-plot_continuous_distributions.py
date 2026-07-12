@@ -37,7 +37,7 @@ def plot_continuous_distributions(df, columns_to_plot=None):
             edgecolor='black'
             )
         kde = stats.gaussian_kde(data)
-        x_values = np.linspace(data.min(), data.max(), 200)
+        x_values = np.linspace(data.min(), data.max(), 100)
         axes[i, 0].plot(
             x_values,
             kde(x_values),
