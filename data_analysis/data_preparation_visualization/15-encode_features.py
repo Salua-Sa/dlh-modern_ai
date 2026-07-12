@@ -27,7 +27,7 @@ def encode_features(df):
         ]
 
     ordinal_encoder_binary = preprocessing.OrdinalEncoder(
-        categories=[["No", "Yes"]] * len(binary_columns))
+        categories=[["No", "Yes"]]
 
     df[binary_columns] = ordinal_encoder_binary.fit_transform(
         df[binary_columns])
