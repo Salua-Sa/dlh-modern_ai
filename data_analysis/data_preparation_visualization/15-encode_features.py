@@ -29,9 +29,10 @@ def encode_features(df):
     ordinal_encoder_binary = preprocessing.OrdinalEncoder(
         categories=[["No", "Yes"]]
 
-    df[binary_columns] = ordinal_encoder_binary.fit_transform(
-        df[binary_columns])
-    df[binary_columns] = df[binary_columns].astype(int)
+    for column in binary_columns:
+        df[binary_columns] = ordinal_encoder_binary.fit_transform(
+            df[binary_columns])
+        df[binary_columns] = df[binary_columns].astype(int)
 
     df = pd.get_dummies(
         df,
