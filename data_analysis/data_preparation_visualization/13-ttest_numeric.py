@@ -32,6 +32,6 @@ for numeric columns against Churn
                 )
             p_value = test_result.pvalue
 
-            dic_result[column] = float(p_value)
+            dic_result[column] = p_value
 
     return dic_result
