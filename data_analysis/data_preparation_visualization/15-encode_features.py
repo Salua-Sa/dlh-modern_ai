@@ -27,12 +27,12 @@ def encode_features(df):
         ]
 
     ordinal_encoder_binary = preprocessing.OrdinalEncoder(
-        categories=[["No", "Yes"]]
+        categories=[["No", "Yes"]])
 
     for column in binary_columns:
-        df[binary_columns] = ordinal_encoder_binary.fit_transform(
-            df[binary_columns])
-        df[binary_columns] = df[binary_columns].astype(int)
+        df[[column]] = ordinal_encoder_binary.fit_transform(
+            df[[column]])
+        df[column] = df[column].astype(int)
 
     df = pd.get_dummies(
         df,
