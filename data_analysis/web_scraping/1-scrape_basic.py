@@ -16,7 +16,7 @@ def scrape_basic(url):
          A list of dicts.
     """
     html = fetch_html(url)
-    soup= BeautifulSoup(html, "html.parser")
+    soup = BeautifulSoup(html, "html.parser")
     list_dic = []
 
     quote_block = soup.find_all("div", class_="quote")
