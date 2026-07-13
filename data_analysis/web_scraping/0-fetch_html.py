@@ -4,7 +4,7 @@
 import requests
 
 
-def fetch_html(url, headers = None, timeout = 10):
+def fetch_html(url, headers=None, timeout=10):
     """
     Fetches a web page.
 
