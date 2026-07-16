@@ -23,6 +23,7 @@ def scroll_and_scrape(url, scroll_pause=2.0):
     options.add_argument("--window-size=1920,1080")
     options.add_argument("--no-sandbox")
     driver = webdriver.Chrome(options=options)
+    driver.set_page_load_timeout(15)
 
     driver.get(url)
 
@@ -32,15 +33,19 @@ def scroll_and_scrape(url, scroll_pause=2.0):
     while True:
         driver.execute_script(
             "window.scrollTo(0, document.body.scrollHeight);")
-
-        time.sleep(scroll_pause)
+        start_time = time.time()
+        while time.time() - start_time < scroll_pause:
+            new_height = driver.execute_script(
+                "return document.body.scrollHeight")
+            if new_height > last_height:
+                break
+            time.sleep(0.1)
 
         new_height = driver.execute_script(
-            "return document.body.scrollHeight")
-
-        if (new_height == last_height):
+            "return document.body.scrollHeight"
+            )
+        if new_height == last_height:
             break
-
         last_height = new_height
 
     products = driver.find_elements(
@@ -68,10 +73,10 @@ def scroll_and_scrape(url, scroll_pause=2.0):
         if product_key not in seen_key:
             seen_key.add(product_key)
             unique_products.append({
-            "title": title,
-            "price": price,
-            "description": description,
-            "rating": rating})
+                "title": title,
+                "price": price,
+                "description": description,
+                "rating": rating})
 
     driver.quit()
     return unique_products
