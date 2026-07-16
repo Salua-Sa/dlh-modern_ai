@@ -48,7 +48,8 @@ def scroll_and_scrape(url, scroll_pause=2.0):
         "div.thumbnail"
         )
 
-    unique_products_dicts = {}
+    unique_products = []
+    seen_key = set()
 
     for product in products:
         title = product.find_element(
@@ -64,11 +65,13 @@ def scroll_and_scrape(url, scroll_pause=2.0):
             "css selector",
             ".ratings .ws-icon.ws-icon-star"))
         product_key = (title, price)
-        unique_products_dicts[product_key] = {
+        if product_key not in seen_key:
+            seen_key.add(product_key)
+            unique_products.append({
             "title": title,
             "price": price,
             "description": description,
-            "rating": rating}
+            "rating": rating})
 
     driver.quit()
-    return list(unique_products_dicts.values())
+    return unique_products
