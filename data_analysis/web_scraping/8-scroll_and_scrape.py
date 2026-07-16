@@ -19,8 +19,11 @@ def scroll_and_scrape(url, scroll_pause=2.0):
     """
 
     options = webdriver.ChromeOptions()
-
+    options.add_argument("--headless")
+    options.add_argument("--window-size=1920,1080")
+    options.add_argument("--no-sandbox")
     driver = webdriver.Chrome(options=options)
+
     driver.get(url)
 
     last_height = driver.execute_script(
