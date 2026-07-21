@@ -24,11 +24,11 @@ def build_decision_tree(min_samples_leaf, min_samples_split, random_state):
     Returns:
         model: A Scikit-learn DecisionTreeClassifier instance.
     """
-    model = tree.DecisionTreeClassifier(
+    clf = tree.DecisionTreeClassifier(
         criterion='gini',
         max_depth=None,
         min_samples_leaf=min_samples_leaf,
         min_samples_split=min_samples_split,
         random_state=random_state
         )
-    return model
+    return clf
