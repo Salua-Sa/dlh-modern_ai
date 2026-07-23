@@ -41,8 +41,7 @@ def compare_boosting_classifiers(name, n_estimators, random_state):
     elif name == "xgboost":
         return xgb.XGBClassifier(
             n_estimators=n_estimators,
-            random_state=random_state,
-            verbose=-1)
+            random_state=random_state)
     elif name == "lightgbm":
         return lgb.LGBMClassifier(
             n_estimators=n_estimators,
