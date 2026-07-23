@@ -49,4 +49,4 @@ def compare_boosting_classifiers(name, n_estimators, random_state):
             random_state=random_state,
             verbose=-1)
     else:
-        raise ValueError(f"Unknown model name {name}")
+        raise ValueError(f"Unknown model name '{name}'")
