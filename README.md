@@ -107,6 +107,28 @@ Main topics covered:
 - Selecting the optimal number of clusters
 - Applying Agglomerative Hierarchical Clustering
 
+---
+
+### 5. Linear Models
+
+📁 [`machine_learning/linear_models`](machine_learning/linear_models)
+
+This project introduces linear models for regression and classification.
+
+Main topics covered:
+
+- Linear Regression
+- Regression evaluation metrics
+- Ridge Regression
+- Lasso Regression
+- L1 and L2 regularisation
+- Feature selection
+- SHAP model explainability
+- Logistic Regression
+- Support Vector Machines
+- Linear, polynomial, and RBF kernels
+
+
 ## Skills Practised
 
 Through these projects, I practised how to:
