@@ -6,7 +6,8 @@ from tensorflow import keras
 
 def save_model(model, filepath):
     """
-    Save a Keras model, including its architecture, weights, and optimizer state.
+    Save a Keras model, including its architecture,
+    weights, and optimizer state.
 
     Args:
         model: A trained Keras model to be saved.
