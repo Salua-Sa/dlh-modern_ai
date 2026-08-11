@@ -4,7 +4,7 @@ This module returns a configured gradient descent optimizer and the
 appropriate batch size based on the selected gradient descent variant.
 """
 
-from tensorboard import keras
+from tensorflow import keras
 
 
 def train_with_gradient_descent_variant(variant,
