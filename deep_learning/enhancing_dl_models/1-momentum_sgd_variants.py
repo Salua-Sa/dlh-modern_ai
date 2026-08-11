@@ -41,7 +41,7 @@ def get_optimizer_SGD(name, lr, momentum=0.0, nesterov=False):
         optimizer = keras.optimizers.SGD(
             learning_rate=lr,
             momentum=momentum,
-            nesterov=False)
+            nesterov=True)
     else:
         raise ValueError("Invalid name")
 
