@@ -25,13 +25,13 @@ def build_model_initializer_by_activation(input_dim, hidden_units, activation):
     """
     if activation in ["sigmoid", "tanh"]:
         initializer = keras.initializers.GlorotUniform()
-        acttivation_func = activation
+        act_func = activation
     elif activation == "relu":
         initializer = keras.initializers.HeNormal()
-        acttivation_func = activation
+        act_func = activation
     elif activation == "leaky_relu":
         initializer = keras.initializers.HeNormal()
-        acttivation_func = keras.layers.LeakyRelu()
+        act_func = keras.layers.LeakyReLU()
     else:
         raise ValueError("invalid activation")
 
@@ -39,7 +39,7 @@ def build_model_initializer_by_activation(input_dim, hidden_units, activation):
 
     hidden = keras.layers.Dense(
         units=hidden_units,
-        activation=acttivation_func,
+        activation=act_func,
         kernel_initializer=initializer,
         )(inputs)
 
