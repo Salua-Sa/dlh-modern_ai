@@ -23,7 +23,7 @@ def build_model_initializer_by_activation(input_dim, hidden_units, activation):
     Returns:
         model: A Keras model with the described architecture.
     """
-    if activation in "sigmoid" or activation in "tanh":
+    if activation in ["sigmoid", "tanh"]:
         initializer = keras.initializers.GlorotUniform()
         acttivation_func = activation
     elif activation == "relu":
