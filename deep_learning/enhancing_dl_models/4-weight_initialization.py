@@ -53,7 +53,7 @@ def build_model_initializer_by_activation(input_dim, hidden_units, activation):
     model.compile(
         optimizer="adam",
         loss="categorical_crossentropy",
-        metrics=["accuracy"]
+        metrics=["accuracy"],
         )
 
     return model
