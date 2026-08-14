@@ -43,7 +43,8 @@ def build_model(hp):
     num_layers = hp.Int(
         'num_layers',
         min_value=1,
-        max_value=2)
+        max_value=2,
+        step=1)
 
     # The number of neurons (between 4 and 12, with a step size of 4).
     units = hp.Int(
