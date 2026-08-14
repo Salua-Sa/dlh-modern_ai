@@ -38,45 +38,16 @@ def build_model(hp):
     """
     model = keras.Sequential()
     model.add(keras.layers.Input(shape=(784,)))
+    num_layers = hp.Int('num_layers', min_value=1, max_value=2, step=1)
+    units = hp.Int('units', min_value=4, max_value=12, step=4)
+    activation = hp.Choice('activation', values=['relu', 'sigmoid'])
 
-    # The number of hidden layers in the network (between 1 and 2).
-    num_layers = hp.Int(
-        'num_layers',
-        min_value=1,
-        max_value=2,
-        step=1)
-
-    # The number of neurons (between 4 and 12, with a step size of 4).
-    units = hp.Int(
-        'units',
-        min_value=4,
-        max_value=12,
-        step=4)
-
-    # The activation function. Choose from `relu` or `sigmoid`.
-    activation = hp.Choice(
-        'activation',
-        values=['relu', 'simoid']
-        )
-
-    # The learning rate selected from one of the fixed values: 1e-2 or 1e-3.
-    learning_rate = hp.Choice(
-        'learning_rate',
-        values=[1e-2, 1e-3])
+    learning_rate = hp.Choice('learning_rate', values=[1e-2, 1e-3])
 
     for i in range(num_layers):
-        model.add(
-            keras.layers.Dense(
-                units=units,
-                activation=activation
-                )
-            )
+        model.add(keras.layers.Dense(units=units, activation=activation))
 
-    model.add(
-        keras.layers.Dense(
-            units=10,
-            activation='softmax')
-        )
+    model.add(keras.layers.Dense(units=10, activation='softmax'))
 
     model.compile(
         optimizer=keras.optimizers.Adam(learning_rate=learning_rate),
