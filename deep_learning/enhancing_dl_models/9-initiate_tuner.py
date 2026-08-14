@@ -7,7 +7,7 @@ import keras_tuner
 
 def initiate_tuner(tuner_type, build_model, x_train,
                    y_train, seed, hyperband_iterations, max_trials,
-                   objective, overwrite=True):
+                   objective="val_accuracy", overwrite=True):
     """
     Initialize a Keras Tuner for hyperparameter tuning.
     Not allowed to import any module except import keras_tuner
@@ -35,33 +35,33 @@ def initiate_tuner(tuner_type, build_model, x_train,
         tuner = keras_tuner.Hyperband(
             hypermodel=build_model,
             objective=objective,
-            seed=seed,
             max_epochs=10,
             factor=3,
-            overwrite=overwrite,
             hyperband_iterations=hyperband_iterations,
+            seed=seed,
             directory='dir_tuner',
-            project_name='hyperband'
+            project_name='hyperband',
+            overwrite=overwrite
             )
     elif tuner_type == "RandomSearch":
         tuner = keras_tuner.RandomSearch(
             hypermodel=build_model,
             objective=objective,
-            seed=seed,
             max_trials=max_trials,
-            overwrite=overwrite,
+            seed=seed,
             directory='dir_tuner',
-            project_name='random_search'
+            project_name='random_search',
+            overwrite=overwrite
             )
     elif tuner_type == "BayesianOptimization":
         tuner = keras_tuner.BayesianOptimization(
             hypermodel=build_model,
             objective=objective,
-            seed=seed,
             max_trials=max_trials,
-            overwrite=overwrite,
+            seed=seed,
             directory='dir_tuner',
-            project_name='bayesian_optimization'
+            project_name='bayesian_optimization',
+            overwrite=overwrite
             )
     else:
         raise ValueError("Invalid tuner type")
