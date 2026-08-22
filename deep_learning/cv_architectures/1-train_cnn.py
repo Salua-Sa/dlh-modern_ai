@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """This module trains a CNN model.
 """
+from tabnanny import verbose
+
 from tensorflow import keras
 
 
@@ -40,7 +42,8 @@ def compile_and_train_cnn(model, epochs, batch_size, x_train, y_train, x_val,
                         y_train,
                         epochs=epochs,
                         batch_size=batch_size,
-                        validation_data=(x_val, y_val)
+                        validation_data=(x_val, y_val),
+                        verbose = 2
                         )
 
     return model, history
