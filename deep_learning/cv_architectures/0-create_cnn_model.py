@@ -22,25 +22,22 @@ def create_cnn_model(input_shape, filters,
     """
     model = keras.Sequential()
     model.add(keras.layers.Input(shape=input_shape))
-    zip(filters, kernel_sizes, activations)
 
     for filter, kernel, activation in zip(filters, kernel_sizes, activations):
         model.add(keras.layers.Conv2D(filters=filter,
                                       kernel_size=kernel,
-                                      activation=activation
-                                      )
-                  )
+                                      activation=activation))
         if pooling_type == "max":
-            model.add(keras.layers.MaxPooling2D())
+            model.add(keras.layers.MaxPooling2D(pool_size=(2, 2)))
         elif pooling_type == "avg":
-            model.add(keras.layers.AveragePooling2D())
+            model.add(keras.layers.AveragePooling2D(pool_size=(2, 2)))
         else:
             raise ValueError("Pooling type must be max or avg")
 
     model.add(keras.layers.Flatten())
     model.add(keras.layers.Dense(10, activation='softmax'))
     model.compile(optimizer='adam',
-                  loss='categorical_crossentropy',
+                  loss='sparse_categorical_crossentropy',
                   metrics=['accuracy']
                   )
     return model
