@@ -1,11 +1,7 @@
 #!/usr/bin/env python3
 """This module creates a Convolutional Neural
 Network (CNN) model."""
-from pickletools import optimize
-
 from tensorflow import keras
-import matplotlib.pyplot as plt
-from tensorflow.keras import metrics
 
 
 def create_cnn_model(input_shape, filters,
