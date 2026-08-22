@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 """This module trains a CNN model.
 """
-from tabnanny import verbose
-
 from tensorflow import keras
 
 
