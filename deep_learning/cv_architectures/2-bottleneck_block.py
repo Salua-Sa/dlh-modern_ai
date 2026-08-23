@@ -35,8 +35,9 @@ def bottleneck_block(x, filters, stride=1, downsample=False, name=None):
     x = keras.layers.Conv2D(
         filters=filters,
         kernel_size=(1, 1),
-        strides=stride,
+        strides=1,
         padding='same',
+        use_bias=False,
         name=f'{name}_conv1' if name else None)(x)
 
     x = keras.layers.BatchNormalization(
@@ -49,7 +50,7 @@ def bottleneck_block(x, filters, stride=1, downsample=False, name=None):
     x = keras.layers.Conv2D(
         filters=filters,
         kernel_size=(3, 3),
-        strides=1,
+        strides=stride,
         padding='same',
         name=f'{name}_conv2' if name else None)(x)
 
@@ -65,13 +66,11 @@ def bottleneck_block(x, filters, stride=1, downsample=False, name=None):
         kernel_size=(1, 1),
         strides=1,
         padding='same',
+        use_bias=False,
         name=f'{name}_conv3' if name else None)(x)
 
     x = keras.layers.BatchNormalization(
         name=f'{name}_bn3' if name else None)(x)
-
-    x = keras.layers.ReLU(
-        name=f'{name}_relu3' if name else None)(x)
 
     # Projection shortcut, used when dimensions must change
     if downsample:
