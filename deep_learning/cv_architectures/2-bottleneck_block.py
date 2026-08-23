@@ -50,7 +50,7 @@ def bottleneck_block(x, filters, stride=1, downsample=False, name=None):
     x = keras.layers.Conv2D(
         filters=filters,
         kernel_size=(3, 3),
-        strides=stride,
+        strides=1,
         padding='same',
         use_bias=False,
         name=f'{name}_conv2' if name else None)(x)
@@ -78,7 +78,7 @@ def bottleneck_block(x, filters, stride=1, downsample=False, name=None):
         shortcut = keras.layers.Conv2D(
             filters=filters * 4,
             kernel_size=(1, 1),
-            strides=stride,
+            strides=1,
             padding='same',
             use_bias=False,
             name=f'{name}_shortcut_conv' if name else None)(shortcut)
