@@ -80,7 +80,6 @@ def bottleneck_block(x, filters, stride=1, downsample=False, name=None):
             kernel_size=(1, 1),
             strides=stride,
             padding='same',
-            use_bias=False,
             name=f'{name}_shortcut_conv' if name else None)(shortcut)
 
         shortcut = keras.layers.BatchNormalization(
