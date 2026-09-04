@@ -31,9 +31,9 @@ def build_feature_extractor():
     base_model.trainable = False
 
     inputs = keras.Input(shape=(224, 224, 3))
-    x = base_model(inputs, trainig=False)
-    outputs = keras.layersGlobalAveragePooling2D()(x)
+    x = base_model(inputs, training=False)
+    x = keras.layers.GlobalAveragePooling2D()(x)
 
-    model = keras.Model(inputs, outputs)
+    model = keras.Model(inputs, x)
 
     return model
