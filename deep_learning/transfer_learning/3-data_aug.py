@@ -24,7 +24,7 @@ def build_data_augmentation():
     Returns:
         Sequential augmentation model
     """
-    data_augmentation = tf.keras.Sequential(
+    data_augmentation = keras.Sequential(
         [
             keras.layers.RandomFlip("horizontal", seed=42),
             keras.layers.RandomRotation(0.15, seed=42),
