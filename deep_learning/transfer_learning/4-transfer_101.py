@@ -260,7 +260,7 @@ def train_transfer_model():
     Run the complete transfer learning pipeline.
 
     Returns:
-        None
+        model
     """
     # Final evaluation
     train_dataset, validation_dataset, num_classes = (load_datasets())
@@ -285,6 +285,8 @@ def train_transfer_model():
     model.save("caltech101_model.h5")
 
     print("\nModel saved as caltech101_model.h5")
+
+    return model
 
 
 if __name__ == "__main__":
