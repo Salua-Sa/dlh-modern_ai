@@ -3,6 +3,7 @@
 This module trains a YOLO model using data augmentation, and allows
 custom Albumentations transforms to be applied during training.
 """
+import albumentations as A
 from ultralytics import YOLO
 
 
@@ -39,18 +40,31 @@ def train_with_augmentation(data, model_path="yolov8n.pt", epochs=100,
     """
 
     # Load the YOLO model
-    yolo_model = YOLO(model_path)
+    model = YOLO(model_path)
 
-    # Train the model
-    results = yolo_model.train(
-        data=data,
-        epochs=epochs,
-        imgsz=imgsz,
-        batch=batch,
-        augment=augmentation,
-        save=save,
-        plots=plots,
-        verbose=verbose
-    )
+    # Store the basic training parameters
+    train_params = {
+        "data": data,
+        "epochs": epochs,
+        "imgsz": imgsz,
+        "batch": batch,
+        "augment": augmentation,
+        "save": save,
+        "plots": plots,
+        "verbose": verbose
+    }
 
-    return results
+    # Add custom YOLO augmentation parameters if provided
+    if yolo_aug_params is not None:
+        train_params.update(yolo_aug_params)
+
+    # Create a custom Albumentations pipeline if provided
+    if albumentations_transforms is not None:
+        custom_transform = A.Compose(
+            albumentations_transforms
+        )
+
+    # Train the YOLO model
+    results = model.train(**train_params)
+
+    return model, results
