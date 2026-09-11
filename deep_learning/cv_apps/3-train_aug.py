@@ -6,9 +6,10 @@ custom Albumentations transforms to be applied during training.
 from ultralytics import YOLO
 
 
-def train_with_augmentation(data_yaml, model="yolov8n.pt",
-                            aug=None, custom_albu=None, epochs=50,
-                            imgsz=640, batch=16):
+def train_with_augmentation(data, model_path="yolov8n.pt", epochs=100,
+                            imgsz=640, batch=16, augmentation=True,
+                            yolo_aug_params=None, albumentations_transforms=None,
+                            save =False, plots=False, verbose=False):
     """
     Train a YOLO model using data augmentation, and allows custom
     Albumentations transforms to be applied during training.
@@ -38,15 +39,18 @@ def train_with_augmentation(data_yaml, model="yolov8n.pt",
     """
 
     # Load the YOLO model
-    yolo_model = YOLO(model)
+    yolo_model = YOLO(model_path)
 
     # Train the model
     results = yolo_model.train(
-        data=data_yaml,
+        data=data,
         epochs=epochs,
         imgsz=imgsz,
         batch=batch,
-        augment=True
+        augment=augmentation,
+        save=save,
+        plots=plots,
+        verbose=verbose
     )
 
     return results
