@@ -36,8 +36,8 @@ def basic_aug(image, bboxes, labels):
 
             # Move, resize, and rotate the image
             albumentations.Affine(
-                translate_percent=(-0.1, 0.1),
-                scale=(0.9, 1.1),
+                translate_percent=0.1,
+                scale=0.1,
                 rotate=(-30, 0),
                 p=0.5
             )
