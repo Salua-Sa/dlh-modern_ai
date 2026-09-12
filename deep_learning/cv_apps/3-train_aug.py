@@ -53,8 +53,14 @@ def train_with_augmentation(data, model_path="yolov8n.pt", epochs=100,
         "verbose": verbose
     }
 
+    # Add custom Albumentations transforms if provided
+    if albumentations_transforms is not None:
+        train_params["augmentations"] = albumentations_transforms
+    # Add custom YOLO augmentation parameters if provided
+    elif yolo_aug_params is not None:
+        train_params.update(yolo_aug_params)
     # Disable YOLO augmentations
-    if augmentation is False:
+    elif augmentation is False:
         train_params["hsv_h"] = 0.0
         train_params["hsv_s"] = 0.0
         train_params["hsv_v"] = 0.0
@@ -70,15 +76,8 @@ def train_with_augmentation(data, model_path="yolov8n.pt", epochs=100,
         train_params["mixup"] = 0.0
         train_params["cutmix"] = 0.0
         train_params["copy_paste"] = 0.0
-
-
-    # Add custom YOLO augmentation parameters if provided
-    if yolo_aug_params is not None:
-        train_params.update(yolo_aug_params)
-
-    # Add custom Albumentations transforms if provided
-    if albumentations_transforms is not None:
-        train_params["augmentations"] = albumentations_transforms
+        train_params["auto_augment"] = None
+        train_params["erasing"] = 0.0
 
     # Train the YOLO model
     results = model.train(**train_params)
