@@ -7,7 +7,7 @@ from ultralytics import YOLO
 
 
 def train_with_augmentation(data, model_path="yolov8n.pt", epochs=100,
-                            imgsz=640, batch=16, augmentation=True,
+                            imgsz=640, batch=16, augmentation=False,
                             yolo_aug_params=None,
                             albumentations_transforms=None,
                             save=False, plots=False, verbose=False):
@@ -58,6 +58,7 @@ def train_with_augmentation(data, model_path="yolov8n.pt", epochs=100,
     if yolo_aug_params is not None:
         train_params.update(yolo_aug_params)
 
+    # Add custom Albumentations transforms if provided
     if albumentations_transforms is not None:
         train_params["augmentations"] = albumentations_transforms
 
