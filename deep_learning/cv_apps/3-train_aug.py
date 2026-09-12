@@ -53,6 +53,25 @@ def train_with_augmentation(data, model_path="yolov8n.pt", epochs=100,
         "verbose": verbose
     }
 
+    # Disable YOLO augmentations
+    if augmentation is False:
+        train_params["hsv_h"] = 0.0
+        train_params["hsv_s"] = 0.0
+        train_params["hsv_v"] = 0.0
+        train_params["degrees"] = 0.0
+        train_params["translate"] = 0.0
+        train_params["scale"] = 0.0
+        train_params["shear"] = 0.0
+        train_params["perspective"] = 0.0
+        train_params["flipud"] = 0.0
+        train_params["fliplr"] = 0.0
+        train_params["bgr"] = 0.0
+        train_params["mosaic"] = 0.0
+        train_params["mixup"] = 0.0
+        train_params["cutmix"] = 0.0
+        train_params["copy_paste"] = 0.0
+
+
     # Add custom YOLO augmentation parameters if provided
     if yolo_aug_params is not None:
         train_params.update(yolo_aug_params)
