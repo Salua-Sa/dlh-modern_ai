@@ -48,7 +48,6 @@ def train_with_augmentation(data, model_path="yolov8n.pt", epochs=100,
         "epochs": epochs,
         "imgsz": imgsz,
         "batch": batch,
-        "augment": augmentation,
         "save": save,
         "plots": plots,
         "verbose": verbose
