@@ -24,16 +24,13 @@ def basic_aug(image, bboxes, labels):
         the augmented image np.ndarray,
         augmented bounding boxes np.ndarray and labels List[int]
     """
-
     # Create the augmentation pipeline
     transform = albumentations.Compose(
         [
             # Flip the image horizontally with 50% probability
             albumentations.HorizontalFlip(p=0.5),
-
             # Randomly change brightness and contrast
             albumentations.RandomBrightnessContrast(p=0.2),
-
             # Move, resize, and rotate the image
             albumentations.Affine(
                 translate_percent=0.1,
@@ -42,13 +39,11 @@ def basic_aug(image, bboxes, labels):
                 p=0.5
             )
         ],
-
         # Tell Albumentations how the bounding boxes are formatted
         bbox_params=albumentations.BboxParams(
             format="pascal_voc",
             label_fields=["labels"]
         ),
-
         # Make the random augmentation reproducible
         seed=42
     )
