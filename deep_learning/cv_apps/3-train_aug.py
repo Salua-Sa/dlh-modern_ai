@@ -58,6 +58,9 @@ def train_with_augmentation(data, model_path="yolov8n.pt", epochs=100,
     if yolo_aug_params is not None:
         train_params.update(yolo_aug_params)
 
+    if albumentations_transforms is not None:
+        train_params["augmentations"] = albumentations_transforms
+
     # Train the YOLO model
     results = model.train(**train_params)
 
