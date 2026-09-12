@@ -7,9 +7,9 @@ from ultralytics import YOLO
 
 
 def inference_tuning(data_yaml, model,
-                   conf_list=[0.25, 0.3, 0.35, 0.4, 0.45, 0.5],
-                   iou_list=[0.4, 0.45, 0.5, 0.55, 0.6, 0.65],
-                   imgsz=640):
+                     conf_list=[0.25, 0.3, 0.35, 0.4, 0.45, 0.5],
+                     iou_list=[0.4, 0.45, 0.5, 0.55, 0.6, 0.65],
+                     imgsz=640):
     """
     Perform inference parameter tuning to find optimal confidence
     and IoU thresholds for best performance on the validation set.
@@ -38,7 +38,7 @@ def inference_tuning(data_yaml, model,
         imgsz: Image size for inference (default: 640)
 
     Returns:
-        None
+        All tested combinations
     """
     # Load the model if a model path was provided
     if isinstance(model, str):
@@ -62,26 +62,12 @@ def inference_tuning(data_yaml, model,
             # Get validation metrics
             map50 = metrics.box.map50
             map50_95 = metrics.box.map
-            precision = metrics.box.mp
-            recall = metrics.box.mr
-            # Calculate F1-score
-            if precision + recall > 0:
-                f1 = (
-                    2 * precision * recall
-                    / (precision + recall)
-                )
-            else:
-                f1 = 0.0
-
             # Save this combination and its results
             result = {
                 "conf": conf,
                 "iou": iou,
                 "map50": map50,
                 "map50_95": map50_95,
-                "precision": precision,
-                "recall": recall,
-                "f1": f1
             }
             all_results.append(result)
 
