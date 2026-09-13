@@ -40,9 +40,7 @@ def inference_tuning(data_yaml, model,
     Returns:
         All tested combinations
     """
-    # Load the model if a model path was provided
-    if isinstance(model, str):
-        model = YOLO(model)
+    model = YOLO(model)
 
     # Store all tested combinations
     all_results = []
