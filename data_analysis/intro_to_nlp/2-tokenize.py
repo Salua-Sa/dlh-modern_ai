@@ -17,6 +17,9 @@ EMOTICON_MAP = {
 
 
 def normalize_emoticons(tokens, emoticon_action="replace"):
+    """
+    Replace or remove emotions from a list of tokens
+    """
     if not isinstance(tokens, list):
         return []
 
