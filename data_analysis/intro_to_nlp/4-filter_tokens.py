@@ -34,7 +34,7 @@ def filter_tokens(tokens, min_len=2, strip_hashtag=False):
 
         # If strip_hashtag=True and the token starts with #,
         # strip the # prefix before continuing
-        if strip_hashtag and token.starstwith("#"):
+        if strip_hashtag and token.startswith("#"):
             token = token[1:]
 
         # Drop tokens shorter than min_len.
