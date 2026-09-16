@@ -38,7 +38,8 @@ def clean_text(text, replace_num=True,
         return ""
 
     # Convert to lowercase and strip leading/trailing whitespace
-    text = text.lower().strip()
+    if not instance(text, int):
+        text = text.lower().strip()
 
     # Remap dataset-native placeholders using _DATASET_PLACEHOLDER_MAP
     for old, new in _DATASET_PLACEHOLDER_MAP.items():
