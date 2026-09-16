@@ -33,13 +33,12 @@ def clean_text(text, replace_num=True,
     """
     Clean and normalize an SMS message.
     """
-    # Return "" for None input
-    if text is None:
+    # Return "" for None or not str input
+    if text is None or not isinstance(text, str):
         return ""
 
     # Convert to lowercase and strip leading/trailing whitespace
-    if not instance(text, int):
-        text = text.lower().strip()
+    text = text.lower().strip()
 
     # Remap dataset-native placeholders using _DATASET_PLACEHOLDER_MAP
     for old, new in _DATASET_PLACEHOLDER_MAP.items():
