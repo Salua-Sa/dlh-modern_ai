@@ -34,8 +34,10 @@ def clean_text(text, replace_num=True,
     Clean and normalize an SMS message.
     """
     # Return "" for None or not str input
-    if text is None or not isinstance(text, str):
+    if text is None:
         return ""
+    if not isinstance(text, str):
+        return " "
 
     # Convert to lowercase and strip leading/trailing whitespace
     text = text.lower().strip()
