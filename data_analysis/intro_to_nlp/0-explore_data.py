@@ -9,13 +9,14 @@ import seaborn as sns
 def explore_data(df):
     """
     Performs initial dataset exploration:
-    Creates a figure with two subplots side by side: 
+    Creates a figure with two subplots side by side:
         fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
     Left subplot: bar chart of ham vs spam counts using sns.barplot:
         - title: "Ham vs Spam Counts", xlabel: "label", ylabel: "count"
     Right subplot: histogram of raw message lengths using sns.histplot:
         - bins: 50
-        - title: "Histogram of Raw Message Lengths", xlabel: "length", ylabel: "count"
+        - title: "Histogram of Raw Message Lengths",
+          xlabel: "length", ylabel: "count"
 
     Args:
         df: Dataset containing 'label' and 'message' columns.
@@ -40,8 +41,8 @@ def explore_data(df):
                  bins=50,
                  ax=ax2)
     ax2.set_title("Histogram of Raw Message Lengths")
-    ax1.set_xlabel("length")
-    ax1.set_ylabel("count")
+    ax2.set_xlabel("length")
+    ax2.set_ylabel("count")
 
     # Prevent labels and plots from overlapping
     plt.tight_layout()
