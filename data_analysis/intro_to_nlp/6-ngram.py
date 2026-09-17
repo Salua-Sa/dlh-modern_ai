@@ -30,3 +30,5 @@ def generate_ngrams(tokens, n=2):
         joined_gram = "_".join(gram)
 
         ngrams_list.append(joined_gram)
+
+    return ngrams_list
