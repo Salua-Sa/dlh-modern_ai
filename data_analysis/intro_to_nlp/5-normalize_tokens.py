@@ -22,11 +22,11 @@ def normalize_tokens(tokens, method="lemmatize"):
     """
     normalize_tokens = []
 
-    # Raise ValueError("method must be 'lemmatize' or 'stem'") for any other value.
+    # Raise ValueError("method must be 'lemmatize' or 'stem'")
     if method not in ["stem", "lemmatize"]:
         raise ValueError("method must be 'lemmatize' or 'stem'")
 
-    # For method="stem": apply PorterStemmer` to each token, skipping placeholders.
+    # For method="stem": apply PorterStemmer` to each token
     if method == "stem":
         stemmer = nltk.stem.PorterStemmer()
         for token in tokens:
@@ -38,7 +38,7 @@ def normalize_tokens(tokens, method="lemmatize"):
 
         return normalize_tokens
 
-    # For method="lemmatize": apply POS-aware lemmatisation using WordNetLemmatizer`.
+    # For method="lemmatize": apply POS-aware lemmatisation
     if method == "lemmatize":
         lemmatizer = nltk.stem.WordNetLemmatizer()
         tagged_tokens = nltk.pos_tag(tokens)
