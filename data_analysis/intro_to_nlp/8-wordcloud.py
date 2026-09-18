@@ -38,7 +38,7 @@ def generate_wordcloud(corpus_tokens, max_words=200, label=None):
     plt.imshow(wc, interpolation="bilinear")
     plt.axis("off")
     if label:
-        plt.title(f"WordCloud — {label}")
+        plt.title(f"WordCloud – {label}")
     else:
         plt.title("WordCloud")
     plt.tight_layout()
