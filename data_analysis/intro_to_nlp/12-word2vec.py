@@ -50,6 +50,6 @@ def word2vec_embeddings(corpus_tokens, vector_size=50, window=5,
             message_vector = np.zeros(vector_size)
         message_vectors.append(message_vector)
 
-    X = np.array(message_vectors)
+    X = np.array(message_vectors, dtype=np.float64)
 
     return (X, model)
