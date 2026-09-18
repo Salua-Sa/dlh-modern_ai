@@ -3,7 +3,6 @@
 This module builds a Bag-of-Words feature matrix from a list of token lists.
 """
 import sklearn
-import sklearn.feature_extraction
 
 
 def bag_of_words(corpus_tokens, max_features=5000, ngram_range=(1, 2),
