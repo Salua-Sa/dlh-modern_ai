@@ -2,12 +2,12 @@
 """ This module loads a pre-trained RoBERTa model ready
 for Masked Language Modeling (MLM) using Hugging Face Transformers.
 """
-from transformers import RobertaForMaskedLM
+import transformers
 
 
 def load_mlm(model_name):
     """
-    Load a pre-trained RoBERTa model ready for Masked Language 
+    Load a pre-trained RoBERTa model ready for Masked Language
     Modeling (MLM) using Hugging Face Transformers.
 
     Args:
@@ -17,6 +17,6 @@ def load_mlm(model_name):
         model: An instance of RobertaForMaskedLM ready for inference.
     """
 
-    model = RobertaForMaskedLM.from_pretrained(model_name)
+    model = transformers.RobertaForMaskedLM.from_pretrained(model_name)
 
     return model
