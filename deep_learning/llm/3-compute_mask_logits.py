@@ -2,6 +2,7 @@
 """ This module  computes the raw logits for all <mask> tokens in a
 tokenized sentence using a pre-trained RoBERTa masked language model.
 """
+import torch
 
 
 def compute_mask_logits(model, inputs, mask_indices):
@@ -19,7 +20,9 @@ def compute_mask_logits(model, inputs, mask_indices):
         mask_logits_list: A list containing logits tensors
                           for each <mask> token.
     """
-    outputs = model(**inputs)
+    with torch.no_grad():
+        outputs = model(**inputs)
+
     logits = outputs.logits
     mask_logits_list = []
 
