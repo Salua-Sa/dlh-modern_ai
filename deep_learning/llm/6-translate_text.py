@@ -5,7 +5,7 @@ language translation using a pre-trained large language model.
 import transformers
 
 
-def translate_text(model_name, src_lang, tgt_lang):
+def translate_text(model_name, src_lang=None, tgt_lang=None):
     """
     Create a high-level interface for performing language translation
     using a pre-trained large language model.
@@ -18,13 +18,9 @@ def translate_text(model_name, src_lang, tgt_lang):
     Returns:
         translator: A Hugging Face pipeline object.
     """
-    if "m2m100" in model_name.lower():
-        translator = transformers.pipeline(task="translation",
-                                           model=model_name,
-                                           src_lang=src_lang,
-                                           tgt_lang=tgt_lang)
-    else:
-        translator = transformers.pipeline(task="translation",
-                                           model=model_name)
+    translator = transformers.pipeline(task="translation",
+                                       model=model_name,
+                                       src_lang=src_lang,
+                                       tgt_lang=tgt_lang)
 
     return translator
