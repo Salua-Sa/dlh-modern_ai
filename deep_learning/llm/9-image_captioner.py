@@ -3,7 +3,7 @@
 of a given image using a pre-trained BLIP Vision-Language Model.
 """
 import transformers
-from PIL import Image
+import PIL
 
 
 def image_captioner(model, image_path, max_new_tokens):
@@ -17,7 +17,7 @@ def image_captioner(model, image_path, max_new_tokens):
         max_new_tokens: Maximum number of tokens to generate.
 
     Returns:
-        caption (str): Generated textual description of the image.
+        caption: Generated textual description of the image.
     """
     # Load the BLIP processor and pre-trained model.
     processor = transformers.BlipProcessor.from_pretrained(model)
@@ -25,7 +25,7 @@ def image_captioner(model, image_path, max_new_tokens):
         model)
 
     # Convert the image into PyTorch tensors using the processor.
-    image = Image.open(image_path).convert("RGB")
+    image = PIL.Image.open(image_path).convert("RGB")
 
     # Generate caption tokens from the model with the processed inputs.
     inputs = processor(image=image,
