@@ -28,7 +28,7 @@ def image_captioner(model, image_path, max_new_tokens):
     image = PIL.Image.open(image_path).convert("RGB")
 
     # Generate caption tokens from the model with the processed inputs.
-    inputs = processor(image=image,
+    inputs = processor(images=image,
                        return_tensors="pt")
 
     # Decode the generated tokens into readable text, skipping special tokens.
