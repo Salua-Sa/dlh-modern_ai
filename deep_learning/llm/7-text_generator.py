@@ -26,12 +26,12 @@ def create_text_generator(model_name, prompt, max_new_tokens,
         generator: A Hugging Face pipeline object.
         output (list[dict]): List of generated text predictions from the model.
     """
-    generator = transformers.pipeline("text-generation",
+    generator = transformers.pipeline(task="text-generation",
                                       model=model_name)
 
     pad_token_id = generator.tokenizer.eos_token_id
 
-    output = generator(promt,
+    output = generator(prompt,
                        max_new_tokens=max_new_tokens,
                        temperature=temperature,
                        repetition_penalty=repetition_penalty,
