@@ -21,7 +21,7 @@ def image_captioner(model, image_path, max_new_tokens):
     """
     # Load the BLIP processor and pre-trained model.
     processor = transformers.BlipProcessor.from_pretrained(model)
-    model = transformers.BlipConditionalGeneration.from_pretrained(
+    model = transformers.BlipForConditionalGeneration.from_pretrained(
         model)
 
     # Convert the image into PyTorch tensors using the processor.
