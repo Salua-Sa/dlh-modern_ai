@@ -18,9 +18,13 @@ def translate_text(model_name, src_lang, tgt_lang):
     Returns:
         translator: A Hugging Face pipeline object.
     """
-    translator = transformers.pipeline(task="translation",
-                                       model=model_name,
-                                       src_lang=src_lang,
-                                       tgt_lang=tgt_lang)
+    if "m2m100" in model_name.lower():
+        translator = transformers.pipeline(task="translation",
+                                           model=model_name,
+                                           src_lang=src_lang,
+                                           tgt_lang=tgt_lang)
+    else:
+        translator = transformers.pipeline(task="translation",
+                                           model=model_name)
 
     return translator
