@@ -20,7 +20,11 @@ def decode_mask_predictions(mask_logits_list, tokenizer):
     decoded_tokens = []
     vocab_size = len(tokenizer)
     token_ids = range(vocab_size)
-    tokens = tokenizer.convert_ids_to_tokens(token_ids)
+
+    tokens = []
+    for token_id in token_ids:
+        token = tokenizer.decode([token_id]).strip()
+        tokens.append(token)
 
     for mask_logits in mask_logits_list:
         decoded_tokens.append(tokens)
