@@ -18,11 +18,11 @@ def decode_mask_predictions(mask_logits_list, tokenizer):
         vocabulary tokens corresponding to the logits at each mask position.
     """
     decoded_tokens = []
+    vocab_size = len(tokenizer)
+    token_ids = range(vocab_size)
+    tokens = tokenizer.convert_ids_to_tokens(token_ids)
 
     for mask_logits in mask_logits_list:
-        mask_logits_size = len(mask_logits)
-        token_ids = range(mask_logits_size)
-        tokens = tokenizer.convert_ids_to_tokens(token_ids)
         decoded_tokens.append(tokens)
 
     return decoded_tokens
