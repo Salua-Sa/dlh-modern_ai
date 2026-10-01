@@ -3,11 +3,7 @@
 for a classification model.
 """
 import numpy as np
-from sklearn.metrics import (accuracy_score,
-                             precision_score,
-                             recall_score,
-                             f1_score
-                             )
+import sklearn.metrics
 
 
 def compute_metrics(predictions):
@@ -30,21 +26,21 @@ def compute_metrics(predictions):
     labels = predictions.label_ids
     predicted_labels = np.argmax(logits, axis=1)
 
-    accuracy = accuracy_score(labels,
+    accuracy = sklearn.metrics.accuracy_score(labels,
                               predicted_labels
                               )
 
-    precision = precision_score(labels,
+    precision = sklearn.metrics.precision_score(labels,
                                 predicted_labels,
                                 average="weighted"
                                 )
 
-    recall = recall_score(labels,
+    recall = sklearn.metrics.recall_score(labels,
                           predicted_labels,
                           average="weighted"
                           )
 
-    f1 = f1_score(labels,
+    f1 = sklearn.metrics.f1_score(labels,
                   predicted_labels,
                   average="weighted"
                   )
