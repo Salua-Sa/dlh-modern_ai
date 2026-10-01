@@ -15,35 +15,33 @@ def compute_metrics(predictions):
 
     Returns:
         Dictionary containing the computed metrics:
-        {
-        accuracy': float,
-        'precision': float,
-        'recall': float,
-        'f1': float
-        }
+        {'accuracy': float,
+         'precision': float,
+         'recall': float,
+         'f1': float}
     """
     logits = predictions.predictions
     labels = predictions.label_ids
     predicted_labels = np.argmax(logits, axis=1)
 
     accuracy = sklearn.metrics.accuracy_score(labels,
-                              predicted_labels
-                              )
+                                              predicted_labels
+                                              )
 
     precision = sklearn.metrics.precision_score(labels,
-                                predicted_labels,
-                                average="weighted"
-                                )
+                                                predicted_labels,
+                                                average="weighted"
+                                                )
 
     recall = sklearn.metrics.recall_score(labels,
-                          predicted_labels,
-                          average="weighted"
-                          )
+                                          predicted_labels,
+                                          average="weighted"
+                                          )
 
     f1 = sklearn.metrics.f1_score(labels,
-                  predicted_labels,
-                  average="weighted"
-                  )
+                                  predicted_labels,
+                                  average="weighted"
+                                  )
 
     return {"accuracy": accuracy,
             "precision": precision,
