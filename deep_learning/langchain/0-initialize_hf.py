@@ -21,7 +21,6 @@ def initialize_hf_llm(model_name, max_tokens):
         model_id=model_name,
         task="text2text-generation",
         model_kwargs={"dtype": "auto"},
-        pipeline_kwargs={"max_new_tokes": max_tokens},
-        )
-
+        pipeline_kwargs={"max_new_tokens": max_tokens},
+    )
     return llm
