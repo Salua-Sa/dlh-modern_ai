@@ -20,7 +20,7 @@ def initialize_hf_llm(model_name, max_tokens):
     """
     tokenizer = transformers.AutoTokenizer.from_pretrained(model_name)
 
-    model = transformers.AutoTModelForSeq2SeqLM.from_pretrained(model_name)
+    model = transformers.AutoModelForSeq2SeqLM.from_pretrained(model_name)
 
     pipeline_hf = langchain-huggingface.pipeline("text2text-generation",
                                                  model=model,
