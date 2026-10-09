@@ -17,9 +17,11 @@ def initialize_hf_llm(model_name, max_tokens):
     Returns:
         llm: An instance of HuggingFacePipeline.
     """
-    llm = llms.HuggingFacePipeline.from_model_id(model_id=model_name,
-                                                 task="text2text-generation",
-                                                 pipeline_kwargs={"max_new_tokes": max_tokens},
-                                                 )
+    llm = llms.HuggingFacePipeline.from_model_id(
+        model_id=model_name,
+        task="text2text-generation",
+        model_kwargs={"dtype": "auto"},
+        pipeline_kwargs={"max_new_tokes": max_tokens},
+        )
 
     return llm
