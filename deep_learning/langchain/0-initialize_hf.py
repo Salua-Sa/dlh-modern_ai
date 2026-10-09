@@ -2,8 +2,7 @@
 """This module sets up a Hugging Face text-to-text
 generation language model using LangChain.
 """
-import transformers
-import langchain-huggingface
+from langchain_community import llms
 
 
 def initialize_hf_llm(model_name, max_tokens):
@@ -18,15 +17,9 @@ def initialize_hf_llm(model_name, max_tokens):
     Returns:
         llm: An instance of HuggingFacePipeline.
     """
-    tokenizer = transformers.AutoTokenizer.from_pretrained(model_name)
-
-    model = transformers.AutoModelForSeq2SeqLM.from_pretrained(model_name)
-
-    pipeline_hf = langchain-huggingface.pipeline("text2text-generation",
-                                                 model=model,
-                                                 tokenizer=tokenizer,
-                                                 max_new_tokens=max_tokens)
-
-    llm = transformers.HuggingFacePipeline(pipeline=pipeline_hf)
+    llm = llms.HuggingFacePipeline.from_model_id(model_id=model_name,
+                                                 task="text2text-generation",
+                                                 pipeline_kwargs={"max_new_tokes": max_tokens},
+                                                 )
 
     return llm
