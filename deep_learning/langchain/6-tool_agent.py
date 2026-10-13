@@ -19,11 +19,12 @@ def load_agent_with_toolkit(llm, toolkit_names, prompt):
     Returns:
         AgentExecutor: An agent executor ready to handle queries.
     """
-    tools = load_tools.load_tools(toolkit_names, llm=llm)
+    tools = load_tools(toolkit_names, llm=llm)
     agent = agents.create_tool_calling_agent(llm, tools, prompt)
     agent_executor = agents.AgentExecutor(
         agent=agent,
         tools=tools,
-        verbose=True,
+        verbose=True
     )
+
     return agent_executor
