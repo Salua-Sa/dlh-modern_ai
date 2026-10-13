@@ -1,0 +1,22 @@
+#!/usr/bin/env python3
+"""This module sets up a reusable prompt with placeholders.
+"""
+from langchain import prompts
+
+
+def create_prompt_template(template_str, input_variables):
+    """
+    Set up a reusable prompt with placeholders.
+
+    Args:
+        template_str: String defining the prompt with placeholders.
+        input_variables: List of variable names used in the prompt.
+
+    Returns:
+        PromptTemplate: An object for dynamically generating prompts
+                        from variable inputs.
+    """
+    prompt_template = prompts.PromptTemplate(template=template_str,
+                                             input_variables=input_variables)
+
+    return prompt_template
