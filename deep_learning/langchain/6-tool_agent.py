@@ -3,7 +3,6 @@
 of using multiple tools to answer user queries.
 """
 from langchain import agents
-from langchain.agents import agent
 from langchain_community.agent_toolkits import load_tools
 
 
@@ -29,8 +28,10 @@ def load_agent_with_toolkit(llm, toolkit_names, prompt):
 
     # Wrap in AgentExecutor: Encapsulate the agent to handle queries,
     # call tools dynamically, and show detailed logs with verbose=True.
-    agent_executor = agents.AgentExecutor(agent=agent,
-                                          tools=tools,
-                                          verbose=True,)
+    agent_executor = agents.AgentExecutor(
+        agent=agent,
+        tools=tools,
+        verbose=True,
+    )
 
     return agent_executor
