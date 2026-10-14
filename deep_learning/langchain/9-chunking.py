@@ -23,6 +23,6 @@ def split_into_chunks(docs, chunk_size, chunk_overlap):
         chunk_overlap=chunk_overlap
         )
 
-    split_chunks = split_chunks.split_documents(docs)
+    chunks = splitter.split_documents(docs)
 
-    return split_chunks
+    return chunks
