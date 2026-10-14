@@ -23,9 +23,8 @@ def create_dataframe_agent(llm, df):
     agent_dataframe = create_pandas_dataframe_agent(
         llm,
         df,
+        verbose=True,
         allow_dangerous_code=True,
-        agent_executor_kwargs={"verbose": True,
-                               "handle_parsing_errors": True},
-    )
+        agent_executor_kwargs={"handle_parsing_errors": True},)
 
     return agent_dataframe
