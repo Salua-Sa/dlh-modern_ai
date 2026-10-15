@@ -27,7 +27,7 @@ def document_answer_chain(llm, system_message, human_message):
          ("human", human_message),])
 
     langChain_document = combine_documents.create_stuff_documents_chain(
-        llm=llm
+        llm=llm,
         prompt=chat_prompt)
 
     return (chat_prompt, langChain_document)
