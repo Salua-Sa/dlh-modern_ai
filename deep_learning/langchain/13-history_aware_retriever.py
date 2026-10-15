@@ -24,8 +24,9 @@ def history_aware_retriever(llm, retriever, human_message):
         prompts.MessagesPlaceholder(variable_name="chat_history"),
         ("human", human_message),])
 
-    history_retriever = chains.create_history_aware_retriever(llm,
-                                                              retriever,
-                                                              chat_prompt)
+    history_retriever = (chains.history_aware_retriever.
+                         create_history_aware_retriever(llm,
+                                                        retriever,
+                                                        chat_prompt))
 
     return (chat_prompt, history_retriever)
