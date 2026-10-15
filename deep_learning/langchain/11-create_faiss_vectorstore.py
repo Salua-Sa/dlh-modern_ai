@@ -21,8 +21,8 @@ def create_faiss_vectorstore(docs, embedding_model, k,
         A retriever object to query the vector store.
     """
     vectorstore = vectorstores.FAISS.from_documents(docs,
-                                                     embedding_model)
+                                                    embedding_model)
     retriever = vectorstore.as_retriever(search_type=search_type,
-                                          search_kwargs={"k": k},)
+                                         search_kwargs={"k": k},)
 
     return (vectorstore, retriever)
