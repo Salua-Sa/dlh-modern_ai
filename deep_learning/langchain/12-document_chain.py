@@ -24,8 +24,7 @@ def document_answer_chain(llm, system_message, human_message):
     chat_prompt = prompts.ChatPromptTemplate.from_messages(
         [("system", system_message),
          prompts.MessagesPlaceholder(variable_name="chat_history"),
-         ("human", human_message),
-    ])
+         ("human", human_message),])
 
     langChain_document = combine_documents.create_stuff_documents_chain(
         llm,
