@@ -6,7 +6,7 @@ from langchain_core import prompts
 from langchain import chains
 
 
-def history_aware_retriever(llm, retriever, human_message):
+def build_history_aware_retriever(llm, retriever, human_message):
     """
     Generate a search query based on the conversation history
     and the user’s current input to retrieve the most relevant documents.
@@ -24,9 +24,8 @@ def history_aware_retriever(llm, retriever, human_message):
         prompts.MessagesPlaceholder(variable_name="chat_history"),
         ("human", human_message),])
 
-    history_retriever = (chains.history_aware_retriever.
-                         create_history_aware_retriever(llm,
-                                                        retriever,
-                                                        chat_prompt))
+    history_retriever = chains.create_history_aware_retriever(llm,
+                                                              retriever,
+                                                              chat_prompt)
 
     return (chat_prompt, history_retriever)
