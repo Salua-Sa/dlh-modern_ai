@@ -20,9 +20,9 @@ def create_faiss_vectorstore(docs, embedding_model, k,
         vectorstores: A FAISS vector store containing the document embeddings.
         A retriever object to query the vector store.
     """
-    vectorstores = vectorstores.FAISS.from_documents(docs,
+    vectorstore = vectorstores.FAISS.from_documents(docs,
                                                      embedding_model)
-    retriever = vectorstores.as_retriever(search_type=search_type,
+    retriever = vectorstore.as_retriever(search_type=search_type,
                                           search_kwargs={"k": k},)
 
-    return (vectorstores, retriever)
+    return (vectorstore, retriever)
